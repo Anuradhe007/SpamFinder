@@ -24,13 +24,15 @@ def compute_confusion_matrix(truth_dict, pred_dict, pos_tag='SPAM', neg_tag='OK'
 
 
 def quality_score(tp, tn, fp, fn):
+    if tp*tn*fn == 0:
+        return 0
     quality = (tp + tn) / (tp + tn + 10 * fp + fn)
     return quality
 
 
 def compute_quality_for_corpus(corpus_dir):
-    truth_file_path = corpus_dir + '/!truth.txt'
-    prediction_file_path = corpus_dir + '/!prediction.txt'
+    truth_file_path = corpus_dir + '\\1\\!truth.txt'
+    prediction_file_path = corpus_dir + '\\2\\!prediction.txt'
     truth_dict = utils.read_classification_from_file(truth_file_path)
     pred_dict = utils.read_classification_from_file(prediction_file_path)
     confusion_matrix = compute_confusion_matrix(truth_dict, pred_dict)

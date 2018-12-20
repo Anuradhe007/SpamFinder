@@ -11,7 +11,7 @@ class NaiveFilter:
         files = os.listdir(path_to_corpus_to_evaluate)
         cls_dict = dict()
         for name in files:
-            cls_dict.update({name: 'OK'})
+            cls_dict.update({str(name): 'OK'})
         utils.write_classification_to_file(cls_dict, path_to_corpus_to_evaluate)
 
 
@@ -23,7 +23,7 @@ class ParanoidFilter:
         files = os.listdir(path_to_corpus_to_evaluate)
         cls_dict = dict()
         for name in files:
-            cls_dict.update({name: 'SPAM'})
+            cls_dict.update({str(name): 'SPAM'})
         utils.write_classification_to_file(cls_dict, path_to_corpus_to_evaluate)
 
 
@@ -37,5 +37,5 @@ class RandomFilter:
         type_list = ['SPAM', 'OK']
 
         for name in files:
-            cls_dict.update({name: type_list[random.randint(0, 1)]})
-        utils.write_classification_to_file(cls_dict, path_to_corpus_to_evaluate)
+            cls_dict.update({str(name): type_list[random.randint(0, 1)]})
+        utils.write_classification_to_file(cls_dict, path_to_corpus_to_evaluate+'\\!prediction.txt')
